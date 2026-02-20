@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Quizzes</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .navbar .user-info { display: flex; align-items: center; gap: 20px; }
+    .navbar .logout-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+    .navbar .logout-btn:hover { background: white; color: #667eea; }
+  </style>
+</head>
+<body>
+  <% if (fullname) { %>
+  <div class="navbar">
+    <div class="user-info">
+      <div>
+        <div>Welcome, <strong><%= fullname %></strong></div>
+      </div>
+    </div>
+    <div>
+      <a href="/" class="logout-btn" style="text-decoration: none; display: inline-block; margin-right: 10px;">🏠 Home</a>
+      <a href="/logout" class="logout-btn">🚪 Logout</a>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="container">
+    <h1>📝 Available Quizzes</h1>
+
+    <% if (quizzes.length === 0) { %>
+    <div class="info-message">
+      No quizzes available. Please
+      <a href="/create">create a quiz</a>
+      first.
+    </div>
+    <% } else { %>
+    <p style="margin-bottom: 20px; color: #667eea; font-weight: 600;">
+      Total Quizzes: <strong><%= quizzes.length %></strong>
+    </p>
+
+    <% quizzes.forEach(quiz => { %>
+    <div class="quiz-item">
+      <h2 style="margin-top: 0; color: #2c3e50; margin-bottom: 12px;"><%= quiz.title %></h2>
+      <p style="margin: 8px 0; color: #555;"><strong>📋 Questions:</strong> <%= quiz.questions.length %></p>
+      <p style="margin: 8px 0; color: #555;"><strong>📅 Created:</strong> <%= new Date(quiz.createdAt).toLocaleDateString() %></p>
+      <% if (role === 'student') { %>
+      <a href="/quiz/<%= quiz._id %>" class="btn" style="margin-top: 15px; display: inline-block;">▶️ Attempt This Quiz</a>
+      <% } else if (role === 'teacher') { %>
+      <a href="/quiz/<%= quiz._id %>/attempts" class="btn" style="margin-top: 15px; display: inline-block;">📊 View Attempts</a>
+      <% } %>
+    </div>
+    <% }); %>
+    <% } %>
+
+    <% if (role === 'teacher') { %>
+    <a href="/students" class="btn" style="margin-top: 20px; display: inline-block;">🔎 Search Students</a>
+    <% } %>
+    <a href="/" class="btn btn-secondary" style="margin-top: 20px">← Back to Home</a>
+  </div>
+</body>
+</html>

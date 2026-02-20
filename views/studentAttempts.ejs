@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= username %> - Attempts</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div style="max-width:900px;margin:30px auto;padding:20px;">
+    <h1>📊 Attempts for <%= username %></h1>
+
+    <% if (!attempts || attempts.length === 0) { %>
+      <p>No attempts by this student.</p>
+    <% } else { %>
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="text-align:left;border-bottom:2px solid #eee;">
+            <th style="padding:8px">Quiz</th>
+            <th style="padding:8px">Score</th>
+            <th style="padding:8px">Total Questions</th>
+            <th style="padding:8px">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% attempts.forEach(a => { %>
+            <tr>
+              <td style="padding:8px"><%= a.quizId ? a.quizId.title : 'Deleted Quiz' %></td>
+              <td style="padding:8px"><%= a.score %></td>
+              <td style="padding:8px"><%= a.totalQuestions %></td>
+              <td style="padding:8px"><%= new Date(a.createdAt).toLocaleString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <div style="margin-top:20px;"><a href="/students" class="btn btn-secondary">← Back to Students</a></div>
+  </div>
+</body>
+</html>

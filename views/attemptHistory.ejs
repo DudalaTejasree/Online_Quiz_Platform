@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attempt History</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .navbar .user-info { display: flex; align-items: center; gap: 20px; }
+    .navbar .logout-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+    .navbar .logout-btn:hover { background: white; color: #667eea; }
+  </style>
+</head>
+<body>
+  <% if (fullname) { %>
+  <div class="navbar">
+    <div class="user-info">
+      <div>
+        <div>Welcome, <strong><%= fullname %></strong></div>
+      </div>
+    </div>
+    <div>
+      <a href="/" class="logout-btn" style="text-decoration: none; display: inline-block; margin-right: 10px;">🏠 Home</a>
+      <a href="/logout" class="logout-btn">🚪 Logout</a>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="container">
+    <h1>📊 Attempt History</h1>
+    <p style="color: #667eea; margin-bottom: 20px; font-weight: 600;">
+      User: <strong><%= username %></strong>
+    </p>
+
+    <% if (attempts.length === 0) { %>
+    <div class="info-message">
+      No attempts found for "<%= username %>". Start taking quizzes now!
+    </div>
+    <% } else { %>
+    <p style="margin-bottom: 20px; color: #667eea; font-weight: 600;">
+      Total Attempts: <strong><%= attempts.length %></strong>
+    </p>
+
+    <!-- Display attempts in a table -->
+    <table class="attempt-table">
+      <thead>
+        <tr>
+          <th>Quiz Name</th>
+          <th>Score</th>
+          <th>Percentage</th>
+          <th>Date</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% attempts.forEach(attempt => { %> <%
+        const percentage = Math.round(
+          (attempt.score / attempt.totalQuestions) * 100
+        );
+        const status = percentage >= 50 ? "Pass" : "Fail";
+        %>
+        <tr>
+          <td><%= attempt.quizId.title %></td>
+          <td><%= attempt.score %>/<%= attempt.totalQuestions %></td>
+          <td><%= percentage %>%</td>
+          <td><%= new Date(attempt.date).toLocaleDateString() %></td>
+          <td>
+            <span style="font-weight: bold; color: <%= status === 'Pass' ? '#27ae60' : '#e74c3c' %>">
+              <%= status %>
+            </span>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <% } %>
+
+    <!-- Navigation buttons -->
+    <div style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap;">
+       <!-- <a href="/attempts" class="btn btn-secondary" style="flex: 1;">
+        🔍 Search Another User
+      </a>  -->
+      <a href="/" class="btn btn-secondary" style="flex: 1;">
+         Back to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>

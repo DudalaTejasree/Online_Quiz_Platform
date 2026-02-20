@@ -1,0 +1,359 @@
+/* ==================== GLOBAL STYLES ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==================== CONTAINER STYLES ==================== */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== HEADER STYLES ==================== */
+h1 {
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 25px;
+  margin: -30px -30px 20px -30px;
+  font-size: 2em;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  color: #34495e;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+}
+
+h3 {
+  color: #34495e;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+/* ==================== FORM STYLES ==================== */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+input[type='text'],
+input[type='number'],
+textarea,
+select {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+input[type='text']:focus,
+input[type='number']:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.5);
+}
+
+/* ==================== BUTTON STYLES ==================== */
+button,
+.btn,
+a.btn {
+  padding: 12px 24px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+button:hover,
+.btn:hover,
+a.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+button:active,
+.btn:active,
+a.btn:active {
+  transform: translateY(0);
+}
+
+/* Button variants */
+.btn-success {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-success:hover {
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: #333;
+  box-shadow: 0 4px 15px rgba(168, 237, 234, 0.4);
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 6px 20px rgba(168, 237, 234, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ==================== LIST STYLES ==================== */
+ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* ==================== QUIZ DISPLAY STYLES ==================== */
+
+.question-text {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 1.05em;
+  color: #2c3e50;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-label:hover {
+  background-color: #f5f7fa;
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.option-label input[type='radio'] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* ==================== RESULT STYLES ==================== */
+.result-card {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.score-display {
+  font-size: 3em;
+  font-weight: bold;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 20px 0;
+}
+
+.percentage {
+  font-size: 1.5em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.result-message {
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 12px;
+  font-size: 1.1em;
+}
+
+.pass {
+  background-color: #d5f4e6;
+  color: #27ae60;
+  border-left: 4px solid #27ae60;
+  padding-left: 10px;
+}
+
+.fail {
+  background: linear-gradient(135deg, #fadbd8 0%, #f5b7af 100%);
+  color: #e74c3c;
+  border-left: 5px solid #e74c3c;
+  padding-left: 10px;
+  border-radius: 12px;
+}
+
+/* ==================== HOME PAGE STYLES ==================== */
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.home-buttons .btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 17px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border-radius: 16px;
+}
+
+/* ==================== NAVIGATION STYLES ==================== */
+.nav-link {
+  display: inline-block;
+  margin-right: 15px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* ==================== ALERT/MESSAGE STYLES ==================== */
+.success-message {
+  background: linear-gradient(135deg, #d5f4e6 0%, #a9dfbf 100%);
+  color: #27ae60;
+  padding: 15px;
+  border-left: 5px solid #27ae60;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.15);
+}
+
+.error-message {
+  background: linear-gradient(135deg, #fadbd8 0%, #f5b7af 100%);
+  color: #e74c3c;
+  padding: 15px;
+  border-left: 5px solid #e74c3c;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.15);
+}
+
+.info-message {
+  background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 100%);
+  color: #667eea;
+  padding: 15px;
+  border-left: 5px solid #667eea;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin: -15px -15px 15px -15px;
+  }
+
+  button,
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .score-display {
+    font-size: 2em;
+  }
+
+  .attempt-table {
+    font-size: 0.85em;
+  }
+
+  .attempt-table th,
+  .attempt-table td {
+    padding: 10px;
+  }
+
+  .home-buttons {
+    gap: 12px;
+  }
+
+  .home-buttons .btn {
+    padding: 15px;
+  }
+}

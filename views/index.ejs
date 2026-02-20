@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Platform - Home</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .navbar .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar .user-greeting {
+      font-size: 0.95em;
+    }
+
+    .navbar .user-name {
+      font-weight: 600;
+      font-size: 1.05em;
+    }
+
+    .navbar .logout-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+
+    .navbar .logout-btn:hover {
+      background: white;
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <% if (fullname) { %>
+  <div class="navbar">
+    <div class="user-info">
+      <div>
+        <div class="user-greeting">Welcome,</div>
+        <div class="user-name"><%= fullname %></div>
+      </div>
+    </div>
+    <a href="/logout" class="logout-btn">🚪 Logout</a>
+  </div>
+  <% } %>
+
+  <div class="container">
+    <h1>📚 Online Quiz & Assessment Platform</h1>
+
+    <p style="text-align: center; margin-bottom: 30px; color: #667eea; font-size: 1.1em; font-weight: 500;">
+      Simple Quiz Management System for Students
+    </p>
+
+    <div class="home-buttons">
+      <% if (role === 'teacher') { %>
+      <a href="/create" class="btn btn-success" style="width: 100%; padding: 15px">✏️ Create a New Quiz</a>
+      <a href="/quizzes" class="btn" style="width: 100%; padding: 15px">📊 View Quiz Attempts</a>
+      <% } else { %>
+      <a href="/quizzes" class="btn" style="width: 100%; padding: 15px">📝 Attempt a Quiz</a>
+      <a href="/attempts" class="btn btn-secondary" style="width: 100%; padding: 15px">📊 View My Past Attempts</a>
+      <% } %>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; border-top: 2px solid #f0f0f0; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px;">
+      <h3 style="color: #667eea; margin-top: 0;">✨ Features:</h3>
+      <ul style="color: #2c3e50;">
+        <li>✓ Create quizzes with multiple choice questions</li>
+        <li>✓ Attempt quizzes and get instant results</li>
+        <li>✓ View your previous quiz attempts and scores</li>
+        <li>✓ Automatic score calculation</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

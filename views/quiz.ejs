@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz - <%= quiz.title %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .navbar .user-info { display: flex; align-items: center; gap: 20px; }
+    .navbar .logout-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+    .navbar .logout-btn:hover { background: white; color: #667eea; }
+  </style>
+</head>
+<body>
+  <% if (fullname) { %>
+  <div class="navbar">
+    <div class="user-info">
+      <div>
+        <div>Welcome, <strong><%= fullname %></strong></div>
+      </div>
+    </div>
+    <div>
+      <a href="/" class="logout-btn" style="text-decoration: none; display: inline-block; margin-right: 10px;">🏠 Home</a>
+      <a href="/logout" class="logout-btn">🚪 Logout</a>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="container">
+    <h1>📝 <%= quiz.title %></h1>
+    <p style="color: #667eea; margin-bottom: 20px; font-weight: 600;">
+      Total Questions: <strong><%= quiz.questions.length %></strong>
+    </p>
+
+    <form method="POST" action="/submit/<%= quiz._id %>">
+      <!-- Display all questions -->
+      <% quiz.questions.forEach((question, index) => { %>
+      <div class="question-card">
+        <div class="question-text">
+          ❓ Question <%= index + 1 %>: <%= question.questionText %>
+        </div>
+
+        <!-- Display 4 options for each question -->
+        <div class="options">
+          <% question.options.forEach((option, optionIndex) => { %>
+          <label class="option-label">
+            <input
+              type="radio"
+              name="answer_<%= index %>"
+              value="<%= optionIndex %>"
+              required
+            />
+            <span style="flex: 1;"><%= option %></span>
+          </label>
+          <% }); %>
+        </div>
+      </div>
+      <% }); %>
+
+      <!-- Submit button for quiz attempt -->
+      <button type="submit" class="btn-success" style="width: 100%; padding: 15px; margin-top: 20px;">
+        ✓ Submit Quiz
+      </button>
+    </form>
+
+    <a href="/quizzes" class="btn btn-secondary" style="margin-top: 20px; display: inline-block;">
+      ← Back to Quizzes
+    </a>
+  </div>
+
+  <script>
+    // Simple validation to ensure all questions are answered
+    document.querySelector('form').onsubmit = function (e) {
+      const questionCount = <%= quiz.questions.length %>;
+      for (let i = 0; i < questionCount; i++) {
+        const answered = document.querySelector(`input[name="answer_${i}"]:checked`);
+        if (!answered) {
+          alert(`Please answer Question ${i + 1}`);
+          e.preventDefault();
+          return false;
+        }
+      }
+    };
+  </script>
+</body>
+</html>

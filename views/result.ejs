@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Result</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .navbar .user-info { display: flex; align-items: center; gap: 20px; }
+    .navbar .logout-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+    .navbar .logout-btn:hover { background: white; color: #667eea; }
+  </style>
+</head>
+<body>
+  <% if (fullname) { %>
+  <div class="navbar">
+    <div class="user-info">
+      <div>
+        <div>Welcome, <strong><%= fullname %></strong></div>
+      </div>
+    </div>
+    <div>
+      <a href="/" class="logout-btn" style="text-decoration: none; display: inline-block; margin-right: 10px;">🏠 Home</a>
+      <a href="/logout" class="logout-btn">🚪 Logout</a>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="container">
+    <h1>🎯 Quiz Result</h1>
+
+    <div class="result-card">
+      <h2 style="color: #2c3e50; margin-top: 0;"><%= quizTitle %></h2>
+      <p style="color: #667eea; margin-bottom: 15px; font-weight: 600;">User: <strong><%= username %></strong></p>
+
+      <!-- Display score -->
+      <div class="score-display">
+        <%= score %>/<%= totalQuestions %>
+      </div>
+
+      <!-- Display percentage -->
+      <div class="percentage">
+        <%= percentage %>%
+      </div>
+
+      <!-- Pass/Fail message based on 50% threshold -->
+      <% if (percentage >= 50) { %>
+      <div class="result-message pass">
+        ✓ Congratulations! You passed the quiz.
+      </div>
+      <% } else { %>
+      <div class="result-message fail">
+        ✗ You did not pass the quiz. Try again!
+      </div>
+      <% } %>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div style="text-align: center; margin-top: 30px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+      <a href="/quizzes" class="btn" style="flex: 1; min-width: 200px;">
+        📝 Attempt Another Quiz
+      </a>
+      <a href="/" class="btn btn-secondary" style="flex: 1; min-width: 200px;">
+        🏠 Back to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>
